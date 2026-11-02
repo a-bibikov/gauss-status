@@ -64,6 +64,9 @@ status-website:
   logoUrl: https://status.gausslab.io/logo.svg
   favicon: https://status.gausslab.io/icon.svg
   faviconSvg: https://status.gausslab.io/icon.svg
+  # Ответы GitHub API (инциденты) браузер кэширует 10 минут вместо 2: анонимный лимит GitHub — 60 запросов в час
+  # с IP, загрузка страницы тратит 3–4. Сводка статуса читается не через API и обновляется как прежде.
+  productionCacheTime: 600000
   navbar:
     - title: Status
       href: /
