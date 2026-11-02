@@ -61,7 +61,7 @@ jobs:
         env:
           GH_PAT: ${{ steps.app_token.outputs.token || secrets.GH_PAT || github.token }}
           # Configure the secret allowlist in .upptimerc.yml; do not edit this workflow directly.
-          SECRETS_CONTEXT: '{}'
+          SECRETS_CONTEXT: '{"GLOBALPING_TOKEN":${{ toJson(secrets.GLOBALPING_TOKEN) }}}'
       - name: Update summary in README
         uses: upptime/uptime-monitor@v1.46.5
         with:
