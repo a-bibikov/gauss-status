@@ -1,40 +1,54 @@
-# Upptime для status.gausslab.io (ADR-0016). Это копия конфигурации: живая лежит в репозитории albibikov/gauss-status
+# Upptime для status.gausslab.io (ADR-0016). Это копия конфигурации: живая лежит в репозитории a-bibikov/gauss-status
 # (создан из шаблона upptime/upptime), туда её и копировать после правок — README.md рядом.
 # Проверки — из GitHub Actions раз в 5 минут, страница — GitHub Pages: статус открывается, даже когда наш сервер лежит.
 owner: a-bibikov
 repo: gauss-status
 user-agent: a-bibikov
 
-# Подстановки $SECRET в проверках не нужны: пустой список выключает их совсем
-secrets: []
+# Секреты, которые Upptime передаёт в проверки: только токен Globalping (необязателен — без него анонимный лимит
+# Globalping по IP раннера, который делят и другие пользователи GitHub). Новые секреты (уведомления) — дописать сюда.
+secrets:
+  - GLOBALPING_TOKEN
 
+# Проверки — из Европы через Globalping (не с раннера GitHub в США): время ответа близко к тому, что видят пользователи.
+# location — «волшебная строка» Globalping: случайная точка в Европе, поэтому время немного плавает от проверки к проверке.
 sites:
   - name: Website
     url: https://gausslab.io
     expectedStatusCodes: [200]
     maxResponseTime: 3000
     slug: website
+    type: globalping
+    location: Europe
   # Приём событий: 204 — ingest и его зависимости здоровы (nginx /up → /healthz через auth_request, тело наружу не уходит)
   - name: Event collection
     url: https://collect.gausslab.io/up
     expectedStatusCodes: [204]
     maxResponseTime: 2000
     slug: collect
+    type: globalping
+    location: Europe
   - name: Tracker script
     url: https://collect.gausslab.io/js/gauss.js
     expectedStatusCodes: [200]
     maxResponseTime: 2000
     slug: tracker
+    type: globalping
+    location: Europe
   - name: API
     url: https://api.gausslab.io/up
     expectedStatusCodes: [204]
     maxResponseTime: 2000
     slug: api
+    type: globalping
+    location: Europe
   - name: Dashboard
     url: https://app.gausslab.io
     expectedStatusCodes: [200]
     maxResponseTime: 3000
     slug: dashboard
+    type: globalping
+    location: Europe
 
 status-website:
   cname: status.gausslab.io
