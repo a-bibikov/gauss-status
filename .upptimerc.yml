@@ -56,11 +56,9 @@ status-website:
   introTitle: "**Gauss Analytics status**"
   introMessage: Live status of the website, event collection, tracker script, API and dashboard. Checked every 5 minutes from Europe, outside our servers.
   # Оформление в стиле кабинета: папка assets/ (рядом) копируется в корень репозитория gauss-status, Upptime отдаёт её
-  # с сайта. Стили — после стандартных Upptime (links идут позже global.css); шрифты и логотип свои, без сторонних CDN.
-  theme: dark
-  links:
-    - rel: stylesheet
-      href: /gauss-theme.css
+  # с сайта; шрифты и логотип свои, без сторонних CDN. Тема — через themeUrl (links версия Upptime в шаблоне не выводит);
+  # она грузится раньше global.css, поэтому правила темы начинаются с «html » (assets/gauss-theme.css).
+  themeUrl: /gauss-theme.css
   logoUrl: /logo.svg
   favicon: /icon.svg
   faviconSvg: /icon.svg
