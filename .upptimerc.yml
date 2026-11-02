@@ -1,31 +1,62 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Upptime для status.gausslab.io (ADR-0016). Это копия конфигурации: живая лежит в репозитории albibikov/gauss-status
+# (создан из шаблона upptime/upptime), туда её и копировать после правок — README.md рядом.
+# Проверки — из GitHub Actions раз в 5 минут, страница — GitHub Pages: статус открывается, даже когда наш сервер лежит.
+owner: albibikov
+repo: gauss-status
+user-agent: albibikov
+
+# Подстановки $SECRET в проверках не нужны: пустой список выключает их совсем
+secrets: []
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Website
+    url: https://gausslab.io
+    expectedStatusCodes: [200]
+    maxResponseTime: 3000
+    slug: website
+  # Приём событий: 204 — ingest и его зависимости здоровы (nginx /up → /healthz через auth_request, тело наружу не уходит)
+  - name: Event collection
+    url: https://collect.gausslab.io/up
+    expectedStatusCodes: [204]
+    maxResponseTime: 2000
+    slug: collect
+  - name: Tracker script
+    url: https://collect.gausslab.io/js/gauss.js
+    expectedStatusCodes: [200]
+    maxResponseTime: 2000
+    slug: tracker
+  - name: API
+    url: https://api.gausslab.io/up
+    expectedStatusCodes: [204]
+    maxResponseTime: 2000
+    slug: api
+  - name: Dashboard
+    url: https://app.gausslab.io
+    expectedStatusCodes: [200]
+    maxResponseTime: 3000
+    slug: dashboard
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.gausslab.io
+  name: Gauss Analytics
+  introTitle: "**Gauss Analytics status**"
+  introMessage: Live status of the website, event collection, tracker script, API and dashboard. Checked every 5 minutes from outside our servers.
+  logoUrl: https://gausslab.io/icon.svg
+  favicon: https://gausslab.io/icon.svg
+  faviconSvg: https://gausslab.io/icon.svg
+  theme: dark
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+    - title: gausslab.io
+      href: https://gausslab.io
+    - title: Documentation
+      href: https://gausslab.io/docs
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+# Сообщения бота в истории репозитория — без эмодзи-шума
+commitMessages:
+  commitAuthorName: Gauss Status
+  commitAuthorEmail: upptime@users.noreply.github.com
+
+skipDescriptionUpdate: true
+skipTopicsUpdate: true
