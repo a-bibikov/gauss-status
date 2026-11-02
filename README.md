@@ -2,8 +2,6 @@
 
 This repository contains the open-source uptime monitor and status page for [gausslab.io](https://status.gausslab.io), powered by [Upptime](https://github.com/upptime/upptime).
 
-[![Uptime CI](https://github.com/a-bibikov/gauss-status/workflows/Uptime%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/uptime.yml)
-[![Response Time CI](https://github.com/a-bibikov/gauss-status/workflows/Response%20Time%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/response-time.yml)
 [![Graphs CI](https://github.com/a-bibikov/gauss-status/workflows/Graphs%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/graphs.yml)
 [![Static Site CI](https://github.com/a-bibikov/gauss-status/workflows/Static%20Site%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/site.yml)
 [![Summary CI](https://github.com/a-bibikov/gauss-status/workflows/Summary%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/summary.yml)
