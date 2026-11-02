@@ -1,6 +1,6 @@
 # [📈 Live Status](https://status.gausslab.io): <!--live status--> **🟩 All systems operational**
 
-This repository contains the open-source uptime monitor and status page for [albibikov](https://status.gausslab.io), powered by [Upptime](https://github.com/upptime/upptime).
+This repository contains the open-source uptime monitor and status page for [gausslab.io](https://status.gausslab.io), powered by [Upptime](https://github.com/upptime/upptime).
 
 [![Uptime CI](https://github.com/a-bibikov/gauss-status/workflows/Uptime%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/uptime.yml)
 [![Response Time CI](https://github.com/a-bibikov/gauss-status/workflows/Response%20Time%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/response-time.yml)
