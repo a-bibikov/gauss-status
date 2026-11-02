@@ -2,11 +2,11 @@
 
 This repository contains the open-source uptime monitor and status page for [gausslab.io](https://status.gausslab.io), powered by [Upptime](https://github.com/upptime/upptime).
 
-[![Uptime CI](https://github.com/a-bibikov/gauss-status/workflows/Uptime%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/uptime.yml)
-[![Response Time CI](https://github.com/a-bibikov/gauss-status/workflows/Response%20Time%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/response-time.yml)
-[![Graphs CI](https://github.com/a-bibikov/gauss-status/workflows/Graphs%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/graphs.yml)
-[![Static Site CI](https://github.com/a-bibikov/gauss-status/workflows/Static%20Site%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/site.yml)
-[![Summary CI](https://github.com/a-bibikov/gauss-status/workflows/Summary%20CI/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/summary.yml)
+[![Uptime CI](https://github.com/a-bibikov/gauss-status/actions/workflows/uptime.yml/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/uptime.yml)
+[![Response Time CI](https://github.com/a-bibikov/gauss-status/actions/workflows/response-time.yml/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/response-time.yml)
+[![Graphs CI](https://github.com/a-bibikov/gauss-status/actions/workflows/graphs.yml/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/graphs.yml)
+[![Static Site CI](https://github.com/a-bibikov/gauss-status/actions/workflows/site.yml/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/site.yml)
+[![Summary CI](https://github.com/a-bibikov/gauss-status/actions/workflows/summary.yml/badge.svg)](https://github.com/a-bibikov/gauss-status/actions/workflows/summary.yml)
 
 With [Upptime](https://upptime.js.org), you can get your own unlimited and free uptime monitor and status page, powered entirely by a GitHub repository. We use [Issues](https://github.com/albibikov/gauss-status/issues) as incident reports, [Actions](https://github.com/albibikov/gauss-status/actions) as uptime monitors, and [Pages](https://status.gausslab.io) for the status page.
 
