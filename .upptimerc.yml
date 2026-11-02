@@ -1,9 +1,9 @@
 # Upptime для status.gausslab.io (ADR-0016). Это копия конфигурации: живая лежит в репозитории albibikov/gauss-status
 # (создан из шаблона upptime/upptime), туда её и копировать после правок — README.md рядом.
 # Проверки — из GitHub Actions раз в 5 минут, страница — GitHub Pages: статус открывается, даже когда наш сервер лежит.
-owner: albibikov
+owner: a-bibikov
 repo: gauss-status
-user-agent: albibikov
+user-agent: a-bibikov
 
 # Подстановки $SECRET в проверках не нужны: пустой список выключает их совсем
 secrets: []
