@@ -54,11 +54,16 @@ status-website:
   cname: status.gausslab.io
   name: Gauss Analytics
   introTitle: "**Gauss Analytics status**"
-  introMessage: Live status of the website, event collection, tracker script, API and dashboard. Checked every 5 minutes from outside our servers.
-  logoUrl: https://gausslab.io/icon.svg
-  favicon: https://gausslab.io/icon.svg
-  faviconSvg: https://gausslab.io/icon.svg
+  introMessage: Live status of the website, event collection, tracker script, API and dashboard. Checked every 5 minutes from Europe, outside our servers.
+  # Оформление в стиле кабинета: папка assets/ (рядом) копируется в корень репозитория gauss-status, Upptime отдаёт её
+  # с сайта. Стили — после стандартных Upptime (links идут позже global.css); шрифты и логотип свои, без сторонних CDN.
   theme: dark
+  links:
+    - rel: stylesheet
+      href: /gauss-theme.css
+  logoUrl: /logo.svg
+  favicon: /icon.svg
+  faviconSvg: /icon.svg
   navbar:
     - title: Status
       href: /
@@ -66,6 +71,11 @@ status-website:
       href: https://gausslab.io
     - title: Documentation
       href: https://gausslab.io/docs
+
+i18n:
+  allSystemsOperational: All systems operational
+  overallUptime: "Uptime $UPTIME"
+  averageResponseTime: "Response $TIME ms"
 
 # Сообщения бота в истории репозитория — без эмодзи-шума
 commitMessages:
