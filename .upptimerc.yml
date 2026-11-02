@@ -58,10 +58,12 @@ status-website:
   # Оформление в стиле кабинета: папка assets/ (рядом) копируется в корень репозитория gauss-status, Upptime отдаёт её
   # с сайта; шрифты и логотип свои, без сторонних CDN. Тема — через themeUrl (links версия Upptime в шаблоне не выводит);
   # она грузится раньше global.css, поэтому правила темы начинаются с «html » (assets/gauss-theme.css).
-  themeUrl: /gauss-theme.css
-  logoUrl: /logo.svg
-  favicon: /icon.svg
-  faviconSvg: /icon.svg
+  # Адреса темы, логотипа и иконки — только полные: относительные (/gauss-theme.css) сборщик Sapper обходит раньше,
+  # чем Upptime копирует assets/, сохраняет на их месте папки 404 и копирование падает с EISDIR.
+  themeUrl: https://status.gausslab.io/gauss-theme.css
+  logoUrl: https://status.gausslab.io/logo.svg
+  favicon: https://status.gausslab.io/icon.svg
+  faviconSvg: https://status.gausslab.io/icon.svg
   navbar:
     - title: Status
       href: /
