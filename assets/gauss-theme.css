@@ -1,10 +1,10 @@
 /*
  * Тема status.gausslab.io в стиле кабинета Gauss: цвета, шрифты и радиусы — значения токенов packages/kit
- * (src/css/tokens.generated.css). Upptime копирует папку assets/ репозитория gauss-status в корень сайта,
- * подключается через status-website.themeUrl. Шрифты лежат рядом: страница не зависит ни от нашего сервера,
+ * (src/css/tokens.generated.css). Upptime копирует папку assets/ репозитория gauss-status в корень сайта. Шрифты лежат рядом: страница не зависит ни от нашего сервера,
  * ни от сторонних CDN. Тёмная тема по умолчанию, светлая — по настройке системы (prefers-color-scheme).
- * Компоненты Upptime стилизованы своими scoped-стилями Svelte (класс .svelte-…), поэтому часть правил
- * усилена селектором или !important — только там, где без этого не перебить.
+ * Подключается через status-website.themeUrl, а он идёт в <head> раньше global.css Upptime: поэтому каждое правило
+ * начинается с «html » — так оно сильнее одноимённых правил global.css. Компоненты Upptime стилизованы своими
+ * scoped-стилями Svelte (класс .svelte-…), поэтому часть правил ещё и с !important — только там, где без этого не перебить.
  */
 
 @font-face {
@@ -102,7 +102,7 @@
 }
 
 /* База */
-body {
+html body {
   font-family: var(--g-font-sans);
   font-size: 15px;
   line-height: 1.55;
@@ -112,40 +112,40 @@ body {
 ::selection {
   background: color-mix(in srgb, var(--g-accent) 35%, transparent);
 }
-a {
+html a {
   color: inherit;
   text-underline-offset: 3px;
 }
-a:focus-visible,
-label:focus-visible {
+html a:focus-visible,
+html label:focus-visible {
   outline: 2px solid var(--g-accent);
   outline-offset: 2px;
   border-radius: var(--g-radius-sm);
 }
-.container {
+html .container {
   max-width: 880px;
   padding: 0 24px;
 }
-h1,
-h2,
-h3,
-h4 {
+html h1,
+html h2,
+html h3,
+html h4 {
   font-weight: 600;
   letter-spacing: -0.01em;
 }
-h1 {
+html h1 {
   font-size: clamp(1.75rem, 4vw, 2.25rem);
   line-height: 1.15;
   letter-spacing: -0.025em;
 }
-h1 strong {
+html h1 strong {
   font-weight: 700;
 }
-h2 {
+html h2 {
   font-size: 1.125rem;
   margin: 0;
 }
-h3 {
+html h3 {
   margin-top: 1.5rem;
   font-family: var(--g-font-mono);
   font-size: 0.75rem;
@@ -155,12 +155,12 @@ h3 {
   color: var(--g-text-muted);
   opacity: 1;
 }
-p.lead {
+html p.lead {
   max-width: 62ch;
   font-size: 1rem !important;
   color: var(--g-text-muted);
 }
-code {
+html code {
   font-family: var(--g-font-mono);
   font-size: 0.875em;
   padding: 0.1em 0.35em;
@@ -168,7 +168,7 @@ code {
 }
 
 /* Шапка — как у кабинета: тонкая граница снизу, логотип с названием слева, меню справа */
-nav {
+html nav {
   position: sticky;
   top: 0;
   z-index: 10;
@@ -178,10 +178,10 @@ nav {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
-nav .container {
+html nav .container {
   min-height: 56px;
 }
-nav .container a.logo {
+html nav .container a.logo {
   gap: 10px;
   margin-right: 1.5rem;
   padding: 0;
@@ -189,55 +189,55 @@ nav .container a.logo {
   font-size: 15px;
   color: var(--g-text);
 }
-nav .container a.logo img {
+html nav .container a.logo img {
   height: 22px !important;
   margin: 0 !important;
   border-radius: 0 !important;
 }
-nav .container a.logo {
+html nav .container a.logo {
   margin-right: 1.5rem !important;
 }
-nav ul li a[href] {
+html nav ul li a[href] {
   padding: 18px 12px;
   font-size: 14px;
   color: var(--g-text-muted);
   transition: color 0.15s;
 }
-nav ul li a[href]:hover {
+html nav ul li a[href]:hover {
   color: var(--g-text);
 }
-nav ul li a[aria-current] {
+html nav ul li a[aria-current] {
   color: var(--g-text);
   border-bottom-width: 2px;
 }
 
 /* Карточки сервисов, инцидентов и «всё работает» */
-article {
+html article {
   padding: 16px 20px;
   border-radius: var(--g-radius-lg);
   border: 1px solid var(--card-border-color);
   border-left-width: 1px !important;
   transition: border-color 0.15s, background-color 0.15s;
 }
-article + article {
+html article + article {
   margin-top: 10px;
 }
-article.link:hover {
+html article.link:hover {
   border-color: var(--g-border-strong);
   background-color: var(--g-card-hover);
 }
-article.up,
-article.down,
-article.degraded {
+html article.up,
+html article.down,
+html article.degraded {
   border-left-color: var(--card-border-color) !important;
   color: inherit;
 }
-article.down-active {
+html article.down-active {
   border-color: color-mix(in srgb, var(--g-negative) 45%, var(--g-border)) !important;
 }
 
 /* Статус — точкой перед названием, как StatusDot в кабинете */
-article h4 {
+html article h4 {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -245,9 +245,9 @@ article h4 {
   font-size: 15px;
   font-weight: 600;
 }
-article.up h4::before,
-article.down h4::before,
-article.degraded h4::before {
+html article.up h4::before,
+html article.down h4::before,
+html article.degraded h4::before {
   content: '';
   flex: none;
   width: 8px;
@@ -256,22 +256,22 @@ article.degraded h4::before {
   background: var(--g-positive);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-positive) 18%, transparent);
 }
-article.down h4::before {
+html article.down h4::before {
   background: var(--g-negative);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-negative) 18%, transparent);
 }
-article.degraded h4::before {
+html article.degraded h4::before {
   background: var(--g-warning);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-warning) 18%, transparent);
 }
 /* Иконки сайтов (favicon через DuckDuckGo) — лишние рядом с точкой статуса */
-article h4 img.icon {
+html article h4 img.icon {
   display: none;
 }
 
 /* «All systems are operational» — плашка с зелёной точкой. Значок ✅ Upptime пишет в разметку текстом:
    прячем его через ::first-letter, точку рисуем сами */
-article.up:not(.link) {
+html article.up:not(.link) {
   position: relative;
   margin-bottom: 2.5rem;
   padding: 14px 20px 14px 32px;
@@ -279,11 +279,11 @@ article.up:not(.link) {
   border-color: color-mix(in srgb, var(--g-positive) 35%, var(--g-border)) !important;
   background: color-mix(in srgb, var(--g-positive) 7%, var(--g-surface));
 }
-article.up:not(.link)::first-letter {
+html article.up:not(.link)::first-letter {
   font-size: 0;
   color: transparent;
 }
-article.up:not(.link)::before {
+html article.up:not(.link)::before {
   content: '';
   position: absolute;
   left: 20px;
@@ -297,20 +297,20 @@ article.up:not(.link)::before {
 }
 
 /* Цифры — моноширинные, как метрики в кабинете */
-article .data {
+html article .data {
   font-family: var(--g-font-mono);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
   color: var(--g-text);
   padding: 1px 4px;
 }
-article > div {
+html article > div {
   font-size: 13px;
   color: var(--g-text-muted);
 }
 /* График времени ответа — готовый PNG Upptime под карточкой. Приглушаем его полупрозрачным слоем цвета карточки,
    а слева слой плотный: под названием и цифрами графика не видно (на телефоне он иначе лез под текст) */
-article.graph {
+html article.graph {
   background-image:
     linear-gradient(to right, var(--card-background-color) 42%, color-mix(in srgb, var(--card-background-color) 72%, transparent)),
     var(--background) !important;
@@ -318,45 +318,45 @@ article.graph {
   background-position: 0 0, right 20px center !important;
   background-repeat: no-repeat !important;
 }
-article.graph.link:hover {
+html article.graph.link:hover {
   background-image:
     linear-gradient(to right, var(--g-card-hover) 42%, color-mix(in srgb, var(--g-card-hover) 72%, transparent)),
     var(--background) !important;
 }
 @media (max-width: 560px) {
-  article.graph {
+  html article.graph {
     background-image:
       linear-gradient(to right, var(--card-background-color) 55%, color-mix(in srgb, var(--card-background-color) 80%, transparent)),
       var(--background) !important;
     background-size: 100% 100%, auto 50% !important;
   }
-  nav .container a.logo div {
+  html nav .container a.logo div {
     display: none;
   }
-  nav .container a.logo {
+  html nav .container a.logo {
     margin-right: 0.5rem !important;
   }
 }
-.live-status {
+html .live-status {
   margin-bottom: 2.5rem;
 }
 
 /* Заголовок «Live Status» и переключатель периода — как сегментированный переключатель кабинета */
 /* Заголовок «Live Status» с переключателем — блок .f прямо перед списком сервисов (класс .changed у него временный) */
-.live-status {
+html .live-status {
   margin-top: 14px;
 }
-div.f:has(> form.r) {
+html div.f:has(> form.r) {
   gap: 12px;
 }
-form.r {
+html form.r {
   gap: 2px;
   padding: 3px;
   border: 1px solid var(--g-border);
   border-radius: var(--g-radius-md);
   background: var(--g-surface);
 }
-form.r label {
+html form.r label {
   display: block;
   margin: 0 !important;
   padding: 4px 10px;
@@ -367,10 +367,10 @@ form.r label {
   cursor: pointer;
   transition: color 0.15s, background-color 0.15s;
 }
-form.r label:hover {
+html form.r label:hover {
   color: var(--g-text);
 }
-form.r input:checked + label {
+html form.r input:checked + label {
   font-weight: 500 !important;
   color: var(--g-text);
   background: var(--g-surface-raised);
@@ -378,7 +378,7 @@ form.r input:checked + label {
 }
 
 /* Метки состояния инцидентов и сервисов */
-.tag {
+html .tag {
   padding: 2px 8px;
   border-radius: 999px;
   font-family: var(--g-font-mono);
@@ -389,21 +389,21 @@ form.r input:checked + label {
 }
 
 /* Кнопки страниц ошибки и лимита */
-a.error-button,
-.submit-button {
+html a.error-button,
+html .submit-button {
   display: inline-block;
   padding: 8px 16px;
   border-radius: var(--g-radius-md);
   font-weight: 500;
   text-decoration: none;
 }
-a.error-button:hover,
-.submit-button:hover {
+html a.error-button:hover,
+html .submit-button:hover {
   background: var(--g-accent-hover);
   border-color: var(--g-accent-hover);
 }
-input[type='text'],
-input[type='password'] {
+html input[type='text'],
+html input[type='password'] {
   padding: 8px 12px;
   border: 1px solid var(--g-border);
   border-radius: var(--g-radius-md);
@@ -412,22 +412,22 @@ input[type='password'] {
   font: inherit;
 }
 
-section + h2 {
+html section + h2 {
   margin-top: 2.5rem;
 }
-dl dt {
+html dl dt {
   font-weight: 600;
 }
 
-footer {
+html footer {
   margin-top: 4rem !important;
   font-size: 13px;
   color: var(--g-text-muted);
   opacity: 1 !important;
 }
-footer a {
+html footer a {
   color: var(--g-text-muted);
 }
-footer a:hover {
+html footer a:hover {
   color: var(--g-text);
 }
