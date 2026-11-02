@@ -1,0 +1,433 @@
+/*
+ * Тема status.gausslab.io в стиле кабинета Gauss: цвета, шрифты и радиусы — значения токенов packages/kit
+ * (src/css/tokens.generated.css). Upptime копирует папку assets/ репозитория gauss-status в корень сайта,
+ * подключается через status-website.themeUrl. Шрифты лежат рядом: страница не зависит ни от нашего сервера,
+ * ни от сторонних CDN. Тёмная тема по умолчанию, светлая — по настройке системы (prefers-color-scheme).
+ * Компоненты Upptime стилизованы своими scoped-стилями Svelte (класс .svelte-…), поэтому часть правил
+ * усилена селектором или !important — только там, где без этого не перебить.
+ */
+
+@font-face {
+  font-family: 'Rubik Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 900;
+  src: url(/fonts/rubik-latin-wght-normal.woff2) format('woff2-variations');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/geist-mono-latin-400-normal.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(/fonts/geist-mono-latin-500-normal.woff2) format('woff2');
+}
+
+:root {
+  color-scheme: dark;
+  --g-bg: #080808;
+  --g-surface: #0f0f0f;
+  --g-surface-raised: #191919;
+  --g-border: #202020;
+  --g-border-strong: #2a2a2a;
+  --g-text: #f0f0f0;
+  --g-text-muted: #8a8a8a;
+  --g-text-subtle: #555555;
+  --g-accent: #7730f0;
+  --g-accent-hover: #9b5cf6;
+  --g-accent-text: #a47bff;
+  --g-positive: #aadf6f;
+  --g-negative: #f87171;
+  --g-warning: #fbbf24;
+  --g-font-sans: 'Rubik Variable', Rubik, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --g-font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --g-radius-sm: 6px;
+  --g-radius-md: 8px;
+  --g-radius-lg: 12px;
+  --g-card-hover: color-mix(in srgb, var(--g-surface-raised) 60%, var(--g-surface));
+
+  /* Переменные Upptime */
+  --body-background-color: var(--g-bg);
+  --body-text-color: var(--g-text);
+  --card-background-color: var(--g-surface);
+  --card-border-color: var(--g-border);
+  --nav-background-color: color-mix(in srgb, var(--g-bg) 85%, transparent);
+  --nav-border-bottom-color: var(--g-border);
+  --nav-current-border-bottom-color: var(--g-accent);
+  --up-border-left-color: var(--g-positive);
+  --down-border-left-color: var(--g-negative);
+  --degraded-border-left-color: var(--g-warning);
+  --down-background-color: color-mix(in srgb, var(--g-negative) 10%, var(--g-surface));
+  --tag-color: var(--g-bg);
+  --tag-up-background-color: var(--g-positive);
+  --tag-down-background-color: var(--g-negative);
+  --tag-degraded-background-color: var(--g-warning);
+  --change-background-color: color-mix(in srgb, var(--g-accent) 25%, transparent);
+  --error-button-border-color: var(--g-accent);
+  --error-button-background-color: var(--g-accent);
+  --error-button-color: #ffffff;
+  --submit-button-border-color: var(--g-accent);
+  --submit-button-background-color: var(--g-accent);
+  --submit-button-color: #ffffff;
+  --code-color: var(--g-text);
+  --code-background-color: var(--g-surface-raised);
+  --graph-opacity: 0.5;
+  --graph-filter: grayscale(1);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --g-bg: #ffffff;
+    --g-surface: #f7f7f8;
+    --g-surface-raised: #efeff1;
+    --g-border: #e4e4e7;
+    --g-border-strong: #d4d4d8;
+    --g-text: #111111;
+    --g-text-muted: #5f5f66;
+    --g-text-subtle: #a1a1aa;
+    --g-accent-hover: #6420d8;
+    --g-accent-text: #6a24e0;
+    --g-positive: #386f12;
+    --g-negative: #b91c1c;
+    --g-warning: #9a4508;
+    --tag-color: #ffffff;
+  }
+}
+
+/* База */
+body {
+  font-family: var(--g-font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 3rem;
+}
+::selection {
+  background: color-mix(in srgb, var(--g-accent) 35%, transparent);
+}
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+a:focus-visible,
+label:focus-visible {
+  outline: 2px solid var(--g-accent);
+  outline-offset: 2px;
+  border-radius: var(--g-radius-sm);
+}
+.container {
+  max-width: 880px;
+  padding: 0 24px;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+h1 strong {
+  font-weight: 700;
+}
+h2 {
+  font-size: 1.125rem;
+  margin: 0;
+}
+h3 {
+  margin-top: 1.5rem;
+  font-family: var(--g-font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--g-text-muted);
+  opacity: 1;
+}
+p.lead {
+  max-width: 62ch;
+  font-size: 1rem !important;
+  color: var(--g-text-muted);
+}
+code {
+  font-family: var(--g-font-mono);
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border-radius: var(--g-radius-sm);
+}
+
+/* Шапка — как у кабинета: тонкая граница снизу, логотип с названием слева, меню справа */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0 !important;
+  margin-bottom: 3rem !important;
+  font-weight: 400 !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+nav .container {
+  min-height: 56px;
+}
+nav .container a.logo {
+  gap: 10px;
+  margin-right: 1.5rem;
+  padding: 0;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--g-text);
+}
+nav .container a.logo img {
+  height: 22px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+nav .container a.logo {
+  margin-right: 1.5rem !important;
+}
+nav ul li a[href] {
+  padding: 18px 12px;
+  font-size: 14px;
+  color: var(--g-text-muted);
+  transition: color 0.15s;
+}
+nav ul li a[href]:hover {
+  color: var(--g-text);
+}
+nav ul li a[aria-current] {
+  color: var(--g-text);
+  border-bottom-width: 2px;
+}
+
+/* Карточки сервисов, инцидентов и «всё работает» */
+article {
+  padding: 16px 20px;
+  border-radius: var(--g-radius-lg);
+  border: 1px solid var(--card-border-color);
+  border-left-width: 1px !important;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+article + article {
+  margin-top: 10px;
+}
+article.link:hover {
+  border-color: var(--g-border-strong);
+  background-color: var(--g-card-hover);
+}
+article.up,
+article.down,
+article.degraded {
+  border-left-color: var(--card-border-color) !important;
+  color: inherit;
+}
+article.down-active {
+  border-color: color-mix(in srgb, var(--g-negative) 45%, var(--g-border)) !important;
+}
+
+/* Статус — точкой перед названием, как StatusDot в кабинете */
+article h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+}
+article.up h4::before,
+article.down h4::before,
+article.degraded h4::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--g-positive);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-positive) 18%, transparent);
+}
+article.down h4::before {
+  background: var(--g-negative);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-negative) 18%, transparent);
+}
+article.degraded h4::before {
+  background: var(--g-warning);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-warning) 18%, transparent);
+}
+/* Иконки сайтов (favicon через DuckDuckGo) — лишние рядом с точкой статуса */
+article h4 img.icon {
+  display: none;
+}
+
+/* «All systems are operational» — плашка с зелёной точкой. Значок ✅ Upptime пишет в разметку текстом:
+   прячем его через ::first-letter, точку рисуем сами */
+article.up:not(.link) {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding: 14px 20px 14px 32px;
+  font-weight: 500;
+  border-color: color-mix(in srgb, var(--g-positive) 35%, var(--g-border)) !important;
+  background: color-mix(in srgb, var(--g-positive) 7%, var(--g-surface));
+}
+article.up:not(.link)::first-letter {
+  font-size: 0;
+  color: transparent;
+}
+article.up:not(.link)::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--g-positive);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--g-positive) 18%, transparent);
+}
+
+/* Цифры — моноширинные, как метрики в кабинете */
+article .data {
+  font-family: var(--g-font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--g-text);
+  padding: 1px 4px;
+}
+article > div {
+  font-size: 13px;
+  color: var(--g-text-muted);
+}
+/* График времени ответа — готовый PNG Upptime под карточкой. Приглушаем его полупрозрачным слоем цвета карточки,
+   а слева слой плотный: под названием и цифрами графика не видно (на телефоне он иначе лез под текст) */
+article.graph {
+  background-image:
+    linear-gradient(to right, var(--card-background-color) 42%, color-mix(in srgb, var(--card-background-color) 72%, transparent)),
+    var(--background) !important;
+  background-size: 100% 100%, auto 64% !important;
+  background-position: 0 0, right 20px center !important;
+  background-repeat: no-repeat !important;
+}
+article.graph.link:hover {
+  background-image:
+    linear-gradient(to right, var(--g-card-hover) 42%, color-mix(in srgb, var(--g-card-hover) 72%, transparent)),
+    var(--background) !important;
+}
+@media (max-width: 560px) {
+  article.graph {
+    background-image:
+      linear-gradient(to right, var(--card-background-color) 55%, color-mix(in srgb, var(--card-background-color) 80%, transparent)),
+      var(--background) !important;
+    background-size: 100% 100%, auto 50% !important;
+  }
+  nav .container a.logo div {
+    display: none;
+  }
+  nav .container a.logo {
+    margin-right: 0.5rem !important;
+  }
+}
+.live-status {
+  margin-bottom: 2.5rem;
+}
+
+/* Заголовок «Live Status» и переключатель периода — как сегментированный переключатель кабинета */
+/* Заголовок «Live Status» с переключателем — блок .f прямо перед списком сервисов (класс .changed у него временный) */
+.live-status {
+  margin-top: 14px;
+}
+div.f:has(> form.r) {
+  gap: 12px;
+}
+form.r {
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--g-border);
+  border-radius: var(--g-radius-md);
+  background: var(--g-surface);
+}
+form.r label {
+  display: block;
+  margin: 0 !important;
+  padding: 4px 10px;
+  border-radius: var(--g-radius-sm);
+  font-family: var(--g-font-mono);
+  font-size: 12px;
+  color: var(--g-text-muted);
+  cursor: pointer;
+  transition: color 0.15s, background-color 0.15s;
+}
+form.r label:hover {
+  color: var(--g-text);
+}
+form.r input:checked + label {
+  font-weight: 500 !important;
+  color: var(--g-text);
+  background: var(--g-surface-raised);
+  box-shadow: inset 0 0 0 1px var(--g-border-strong);
+}
+
+/* Метки состояния инцидентов и сервисов */
+.tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: var(--g-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Кнопки страниц ошибки и лимита */
+a.error-button,
+.submit-button {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: var(--g-radius-md);
+  font-weight: 500;
+  text-decoration: none;
+}
+a.error-button:hover,
+.submit-button:hover {
+  background: var(--g-accent-hover);
+  border-color: var(--g-accent-hover);
+}
+input[type='text'],
+input[type='password'] {
+  padding: 8px 12px;
+  border: 1px solid var(--g-border);
+  border-radius: var(--g-radius-md);
+  background: var(--g-surface);
+  color: var(--g-text);
+  font: inherit;
+}
+
+section + h2 {
+  margin-top: 2.5rem;
+}
+dl dt {
+  font-weight: 600;
+}
+
+footer {
+  margin-top: 4rem !important;
+  font-size: 13px;
+  color: var(--g-text-muted);
+  opacity: 1 !important;
+}
+footer a {
+  color: var(--g-text-muted);
+}
+footer a:hover {
+  color: var(--g-text);
+}
